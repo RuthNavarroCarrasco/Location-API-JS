@@ -9,16 +9,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 let actualLocation;
+let destination;
 
 // Obtenemos las coordenadas de la ubicación actual del usuario para ubicarnos en el mapa, en caso de error mostramos un alert.
 navigator.geolocation.getCurrentPosition((location) => {
-  var latlng = L.latLng(location.coords.latitude, location.coords.longitude);
-  actualLocation = L.marker(latlng).addTo(mymap);
-  mymap.setView(latlng, 15);
+  var latlngAct = L.latLng(location.coords.latitude, location.coords.longitude);
+  actualLocation = L.marker(latlngAct).addTo(mymap);
+  mymap.setView(latlngAct, 15);
   },
   (error) => {
     var errorMessage;
-
     switch(error.code) {
       case error.PERMISSION_DENIED:
         errorMessage = "No se han concedido permisos de ubicación.";
@@ -36,10 +36,20 @@ navigator.geolocation.getCurrentPosition((location) => {
     window.alert(errorMessage);
   });
 
-let destination;
+// seleccionar la ubicación destino
 
 
 mymap.on('click', function(e) {
-  var latlng = e.latlng;
-  destination = L.marker(latlng).addTo(map);
+  var latlngDest = e.latlng;
+  destination = L.marker(latlngDest).addTo(mymap);
+  
 });
+// window.navigator.vibrate([200]);
+
+function vibrate() {
+  var latDifference = actualLocation.getLatLng().lat - destination.getLatLng().lat;
+  var lngDifference = actualLocation.getLatLng().lng - destination.getLatLng().lng;
+  if ((latDifference < 200) & (lngDifference < 200)) {
+    window.navigator.vibrate([200, 100, 200, 100, 200]);
+  }
+}
