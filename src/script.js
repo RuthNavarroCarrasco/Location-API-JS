@@ -10,6 +10,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 let actualLocation;
 let destination;
+const maxDest = 1;
+let countDest = 0;
 
 // Obtenemos las coordenadas de la ubicación actual del usuario para ubicarnos en el mapa, en caso de error mostramos un alert.
 navigator.geolocation.getCurrentPosition((location) => {
@@ -32,7 +34,7 @@ navigator.geolocation.getCurrentPosition((location) => {
       default:
         errorMessage = "Se ha producido un error al obtener la ubicación.";
     }
-    // Muestra un mensaje de error en la consola
+    
     window.alert(errorMessage);
   });
 
@@ -40,16 +42,22 @@ navigator.geolocation.getCurrentPosition((location) => {
 
 
 mymap.on('click', function(e) {
-  var latlngDest = e.latlng;
-  destination = L.marker(latlngDest).addTo(mymap);
-  
+  if (countDest < 1) {
+    var latlngDest = e.latlng;
+    destination = L.marker(latlngDest).addTo(mymap);
+  }
+  countDest += 1;
 });
+
+
 // window.navigator.vibrate([200]);
 
 function vibrate() {
   var latDifference = actualLocation.getLatLng().lat - destination.getLatLng().lat;
   var lngDifference = actualLocation.getLatLng().lng - destination.getLatLng().lng;
-  if ((latDifference < 200) & (lngDifference < 200)) {
+  if ((latDifference < 200) || (lngDifference < 200)) {
     window.navigator.vibrate([200, 100, 200, 100, 200]);
   }
 }
+
+vibrate();
