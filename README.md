@@ -1,4 +1,4 @@
-# LAB1_GRUPO82_100451032_RUTH_NAVARRO_CARRASCO
+# Inumeri
 
 ## Detalles sobre la aplicación Inemuri 🚌😴
 
