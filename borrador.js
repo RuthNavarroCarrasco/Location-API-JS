@@ -7,6 +7,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18
 }).addTo(mymap);
 
+mymap.on('click', function(e) {
+  console.log(e);
+})
+
 
 let actualLocation;
 

@@ -3,7 +3,11 @@ body {
     margin: 0;
   }
   
-  html, body, #sample_map {
-    height: 100%;
-  }
-  
+html, body {
+  height: 100%;
+}
+
+
+#sample_map {
+  height: 100%;
+}
