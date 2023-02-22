@@ -1,6 +1,6 @@
 # Inumeri
 
-## Detalles sobre la aplicación Inemuri 🚌😴
+## Detalles sobre la aplicación Inemuri 🚌
 
 La aplicación **Inemuri** está diseñada y planteada para aquellas personas a las que les gusta echarse una siesta 😴 durante sus viajes en transporte público y no quieren saltarse su parada. 
 
@@ -9,9 +9,9 @@ Para ello, en este proyecto definimos un prototipo de la aplicación para un dis
 
 ## Requisitos
 
-1. La aplicación será capaz de definir el lugar de destino en el mapa.
+1. La aplicación será capaz de definir un lugar de destino en el mapa.
 1. La aplicación podrá controlar si el usuario está cerca de su destino.
-1. La aplicación vibrará una vez que el usuario se encuentre cerca de su destino.
+1. La aplicación vibrará una vez que el usuario se encuentre  se encuentre a menos de 1km de su destino.
 
 
 ## Tecnologías empleadas

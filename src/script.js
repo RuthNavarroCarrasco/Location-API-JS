@@ -10,7 +10,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 let actualLocation;
 let destination;
-const maxDest = 1;
 let countDest = 0;
 
 // Obtenemos las coordenadas de la ubicación actual del usuario para ubicarnos en el mapa, en caso de error mostramos un alert.
@@ -38,26 +37,22 @@ navigator.geolocation.getCurrentPosition((location) => {
     window.alert(errorMessage);
   });
 
-// seleccionar la ubicación destino
+  navigator.geolocation.watchPosition((location) => {
+    var latlngAct = L.latLng(location.coords.latitude, location.coords.longitude);
+    mymap.on('click', function(e) {
+      if (countDest < 1) {
+        var latlngDest = e.latlng;
+        destination = L.marker(latlngDest).addTo(mymap);
 
-
-mymap.on('click', function(e) {
-  if (countDest < 1) {
-    var latlngDest = e.latlng;
-    destination = L.marker(latlngDest).addTo(mymap);
-  }
-  countDest += 1;
-});
-
-
-// window.navigator.vibrate([200]);
-
-function vibrate() {
-  var latDifference = actualLocation.getLatLng().lat - destination.getLatLng().lat;
-  var lngDifference = actualLocation.getLatLng().lng - destination.getLatLng().lng;
-  if ((latDifference < 200) || (lngDifference < 200)) {
-    window.navigator.vibrate([200, 100, 200, 100, 200]);
-  }
-}
-
-vibrate();
+        L.polyline([latlngAct, latlngDest], {
+          color: 'red'
+        }).addTo(mymap);
+        
+        var distance = mymap.distance(latlngAct, latlngDest);
+        if (distance < 500) {
+          navigator.vibrate([200, 100, 200, 100, 200]);
+        }
+      }
+      countDest += 1;
+    });
+    });
