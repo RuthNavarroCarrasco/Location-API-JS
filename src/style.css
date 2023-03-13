@@ -11,3 +11,57 @@ html, body {
 #sample_map {
   height: 100%;
 }
+
+header {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 1em;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.search-form {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.search-form input[type="search"] {
+  margin-right: 1em;
+  padding: 0.5em;
+  border: none;
+  border-radius: 0.25em;
+}
+
+.search-form button {
+  padding: 0.5em 1em;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #555;
+}
